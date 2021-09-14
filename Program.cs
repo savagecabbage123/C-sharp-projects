@@ -1,27 +1,51 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Dice_rolling
+namespace Madlibs
 {
     class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
-            Console.WriteLine("In this program you will roll 2 dice at a time until you get a pair");
-            Random numGen = new Random();
-            int roll1 = 0;
-            int roll2 = 1;
-            int attempts = 0;
-            Console.WriteLine("press the enter key to roll 2 dice");
-            while (roll1 != roll2)
+            // init variables
+            string profession, store;
+            string[] emotion = new string[2], food = new string[2];
+            // get input from user
+            Console.WriteLine("hello and welcome to madlibs!");
+            Console.WriteLine("please name any job/profession that you know or have");
+            profession = Console.ReadLine();
+            Console.WriteLine($"wow being a {profession} is very cool we will use that info later");
+            Console.WriteLine("Alright now name your favorite grocery store you like to go to");
+            store = Console.ReadLine();
+            Console.WriteLine($"Okay you like to shop at {store}, that is very cool!");
+            Console.WriteLine($"Okay now I need 2 emotions relating to {profession} they can be the same or different");
+
+            for (int i = 0; i < emotion.Length; i++)
             {
-                Console.ReadKey();
-                roll1 = numGen.Next(1, 7);
-                roll2 = numGen.Next(1, 7);
-                Console.WriteLine("Dice1 " + roll1);
-                Console.WriteLine("Dice2 " + roll2 + "\n");
-                attempts++;
+                Console.WriteLine($"emotions (plural) {i + 1} / {emotion.Length}");
+                emotion[i] = Console.ReadLine();
             }
-            Console.WriteLine("it took you " + attempts + " attempts to roll a 2 of a kind");
+            Console.WriteLine("Lastly I need 2 of your favorite foods");
+
+            for (int i = 0; i < food.Length; i++)
+            {
+                Console.WriteLine($"favorite foods (plural) {i + 1} / {food.Length}");
+                food[i] = Console.ReadLine();
+            }
+            // init story
+            string madlibsstory =
+            $"The {profession} was very {emotion[0]}," +
+            $" he then decided to go to his favorite store {store}" +
+            $" and grabbed some {food[0]} off a shelf" +
+            $" and he ate some {food[1]} " +
+            $"randomly off of a different shelf before buying {food[0]} and was {emotion[1]} again, " +
+            $"because of eating {food[1]} without buying it the {profession} was later arrested.";
+            // print story
+            Console.WriteLine(madlibsstory);
+            Console.Read();
         }
     }
 }
