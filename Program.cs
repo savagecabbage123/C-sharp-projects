@@ -1,83 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace Calculator
+namespace Dice_rolling
 {
     class Program
     {
-        
-        static void Main(string[] args)
+        static void Main()
         {
-            //a string list called opList
-            List<string> opList = new List<string>();
-            opList.Add("/");
-            opList.Add("+");
-            opList.Add("-");
-            opList.Add("*");
-            //writes calculator
-            Console.WriteLine("Calculator");
-            //writes put in a number
-            Console.Write("put in a number: ");
-            //lets you input something and is called num1
-            string num1 = Console.ReadLine();
-            double number;
-            double number2;
-            number = Convert.ToDouble(num1);
-            //writes put in another number
-            Console.Write("put in another number: ");
-            //lets you input something and is called num2
-            string num2 = Console.ReadLine();
-            number2 = Convert.ToInt32(num2);
-            //tells what you chose on both num vars and asks what calculation you want
-            Console.Write("This is your first number {0}", num1);
-            Console.WriteLine(" and this is your second number {0}", num2);
-            Console.WriteLine("Choose what operation you would like to do with these two numbers: ");
-            //displays your list you made
-            foreach (string a in opList)
-                Console.WriteLine(a);
-            //lets you input your operator
-            string op = Console.ReadLine();
-            //function called calculate when it is called it does a small "animation" with text
-            void Calculate()
+            Console.WriteLine("In this program you will roll 2 dice at a time until you get a pair");
+            Random numGen = new Random();
+            int roll1 = 0;
+            int roll2 = 1;
+            int attempts = 0;
+            Console.WriteLine("press the enter key to roll 2 dice");
+            while (roll1 != roll2)
             {
-                Console.Write("Calculating.");
-                //tells program to wait between each line
-                System.Threading.Thread.Sleep(700);
-                Console.Write(".");
-                System.Threading.Thread.Sleep(700);
-                Console.WriteLine(".");
-                System.Threading.Thread.Sleep(700);
+                Console.ReadKey();
+                roll1 = numGen.Next(1, 7);
+                roll2 = numGen.Next(1, 7);
+                Console.WriteLine("Dice1 " + roll1);
+                Console.WriteLine("Dice2 " + roll2 + "\n");
+                attempts++;
             }
-            //checks if your input is equal to this operator on the list 
-            if (op == "/")
-            {
-                //calls the calculate function
-                Calculate();
-                //calculates results
-                Console.WriteLine("Results: ", number / number2);
-            }
-            if (op == "*")
-            {
-                //calls the calculate function
-                Calculate();
-                //calculates results
-                Console.WriteLine("Results: ", number * number2);
-            }
-            if (op == "+")
-            {
-                //calls the calculate function
-                Calculate();
-                //calculates results
-                Console.WriteLine("Results: ", number + number2);
-            }
-            if (op == "-")
-            {
-                //calls the calculate function
-                Calculate();
-                //calculates results
-                Console.WriteLine("Results: ", number - number2);
-            }
+            Console.WriteLine("it took you " + attempts + " attempts to roll a 2 of a kind");
         }
     }
 }
